@@ -23,6 +23,11 @@ export const Conta = sequelize.define('conta', {
         type: Sequelize.DOUBLE,
         allowNull: false,
         defaultValue: 0
+    },
+
+    senha: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 

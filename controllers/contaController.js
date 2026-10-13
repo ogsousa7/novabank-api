@@ -1,4 +1,5 @@
 import { Conta, Transacao } from '../models.js';
+import bcrypt from 'bcrypt';
 
 export const criarConta = async (req, res) => {
 
@@ -14,9 +15,20 @@ export const criarConta = async (req, res) => {
     
         }
 
+        if (!corpo.senha) {
+
+            return res.status(400).json({
+                erro: 'A senha é obrigatória!'
+            })
+
+        }
+
+        const senhaCriptografada = await bcrypt.hash(corpo.senha, 10)
+
         const novaConta = await Conta.create({
             titular: corpo.titular,
-            cpf: corpo.cpf
+            cpf: corpo.cpf,
+            senha: senhaCriptografada
         })
 
         return res.status(201).json({
