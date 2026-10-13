@@ -1,0 +1,16 @@
+import express from 'express';
+import { buscarContaPorId, criarConta, deletar, depositar, listarContas, sacar } from '../controllers/contaController.js';
+
+export const rotasConta = express.Router();
+
+rotasConta.post('/contas', criarConta);
+
+rotasConta.get('/contas/:id', buscarContaPorId);
+
+rotasConta.get('/contas', listarContas)
+
+rotasConta.patch('/contas/:id/deposito', depositar);
+
+rotasConta.patch('/contas/:id/saque', sacar);
+
+rotasConta.delete('/contas/:id', deletar)
