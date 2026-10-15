@@ -98,9 +98,16 @@ export const depositar = async (req, res) => {
 
     try {
 
-        const id = req.params.id;
+        const id = Number(req.params.id);
+        const valor = Number(req.body.valor);
 
-        const valor = req.body.valor;
+        if (id !== Number(req.contaId)) {
+
+            return res.status(403).json({
+                erro: 'Voce nao pode acessar esta conta!'
+            })
+
+        }
 
         if (!valor || valor <= 0) {
 
@@ -146,7 +153,7 @@ export const sacar = async (req, res) => {
 
      try {
 
-        const id = req.params.id;
+        const id = Number(req.contaId);
     
         const corpo = req.body
 

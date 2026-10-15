@@ -10,7 +10,7 @@ rotasConta.get('/contas/:id', buscarContaPorId);
 
 rotasConta.get('/contas', listarContas)
 
-rotasConta.patch('/contas/:id/deposito', depositar);
+rotasConta.patch('/contas/:id/deposito',verificarToken, depositar);
 
 rotasConta.patch('/contas/:id/saque', verificarToken, sacar);
 

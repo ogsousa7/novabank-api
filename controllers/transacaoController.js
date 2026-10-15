@@ -4,7 +4,7 @@ export const mostrarExtrato = async (req, res) => {
 
     try {
 
-        const id = req.params.id;
+        const id = Number(req.contaId);
 
         const transacoes = await Transacao.findAll({ where: { contaId: id } });
 
